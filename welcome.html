@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>welcome!</title>
+    <link rel="stylesheet" href="welcome.css">
+
+</head>
+<body>
+    <div class="major">
+        <div class="grap"><p class="home">Dripplé</p></div>
+        <div class="space"></div>
+        <div class="welcome">
+            <h1>Welcome! Let's create your profile</h1>
+            <p class="tag">Let other's know you better!&nbsp;You can do these later</p>
+            <p class="head2">Add an avatar</p>
+            <div class="picupload">
+                <div class="imagefill"><img src="images/images.png" alt="" srcset="" id="profile"></div>
+                <div class="options"><input type="file" id="file" accept=".jpeg , .jpg, .png " class="hidden" ><label for="file" class="buttonn">Choose&nbspImage</label>
+                <button id="random"> > Or choose from one of our defaults</button></div>
+            </div>
+            <div class="location">
+                <p class="head3">Add Your Location</p>
+                <input type="text" name="location" id="loca" placeholder="Enter a location" required>
+            </div>
+             <input class="sub" value="Next" type="button">
+    </div>
+    <script>
+        var button =document.querySelector('.sub');
+        let imge = document.getElementById("file");
+        let CurrImg = document.getElementById("profile");
+        let randomImg = document.getElementById('random');
+console.log(imge);
+imge.onchange = function () {
+  CurrImg.src = URL.createObjectURL(imge.files[0]);
+  document.querySelector('img').style.height= "100%";
+  document.querySelector('img').style.width= "100%";
+  document.querySelector('img').style.borderRadius = "50%";
+};
+console.log(randomImg);
+
+randomImg.onclick =function(){
+var avatars = ['images/pic1.jpg','images/pic2.jpg','images/pic3.jpg','images/pic4.jpg','images/pic5.jpg','images/pic6.jpg','images/pic7.jpg','images/pic8.jpg','images/pic9.jpg','images/pic10.jpg'];
+  var shuffle = Math.floor(Math.random()*avatars.length);
+  var items =avatars[shuffle];
+  console.log(items)
+  CurrImg.setAttribute('src',items);
+  document.querySelector('img').style.height= "100%";
+  document.querySelector('img').style.width= "100%";
+  document.querySelector('img').style.borderRadius = "50%";
+}
+   console.log(CurrImg.getAttribute('src'));
+       var url=window.location.href;
+       var urlArray = url.split("/");
+       var link = urlArray[urlArray.length - 1];
+       console.log(urlArray);
+     button.addEventListener('click',()=>{
+        if(CurrImg.getAttribute('src') == 'images/images.png'){
+            alert('please add an image or choose from defaults');
+}
+if (document.querySelector('#loca').value == '') {
+     alert('please add location');
+        }
+ else {
+    link ="purpose.html";
+            urlArray[urlArray.length-1]=link;
+            console.log(urlArray);
+            url=urlArray.join('/');
+            window.location.href=url;
+    console.log('no error');
+}
+           
+       });
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just There</title>
+    <link rel="stylesheet" href="purpose.css">
+</head>
+<body>
+    <div class="major">
+        <div class="grap"><p class="home">Dripplé</p></div>
+        <div class="content">
+            <h1>What brings you to Dripplé?</h1>
+            <p class="text">Select the options that best describe you.Don't worry,you can explore other options later.</p>
+            <div class="cards">
+                <div class="card-1 box" id="card-1">
+                    <img src="images/devep.png" class="cardimg" alt="" id="img1">
+                    <p class="subtext-1 edit">I'm a designer looking to share my work</p>
+                    <p class="lowsub hide" id="lower1">Dripplé's platform empowers designers to showcase their work globally, fostering collaboration and visibility within the design community.</p>
+
+                    
+                    <input type="checkbox" name="" id="check1">
+                </div>
+                <div class="card-2 box" id="card-2">
+                    <img src="images/imge2.png" class="cardimg" alt="" id="img2">
+                    <p class="subtext-1 edit">I'm looking to hire a designer</p>
+                    <p class="lowsub hide" id="lower2">Dripplé's curated designer community streamlines hiring, connecting businesses with top talent for brand elevation</p>
+                    <input type="checkbox" name="" id="check2">
+                </div>
+                <div class="card-3 box"n id="card-3">
+                    <img src="images/c94f2a58d7da974404a5122872bb93b0.png" class="cardimg" id="img">
+                    <p class="subtext-1 edit">I'm looking for design inspiration</p>
+                    <p class="lowsub hide" id="lower">with over 7 million shots from a vast community of designers.Dripplé is the leading source for design inspiration.</p>
+                    <input type="checkbox" name="" id="check">
+                    
+                </div>
+            </div>
+            <p class="endt"></p>
+            <input type="button" value="Finish" class="sub" disabled="disabled">
+        </div>
+    </div>
+    <script>
+        var check = document.getElementById('check');
+        var check1 = document.getElementById('check1');
+        var check2 = document.getElementById('check2');
+
+        var button=document.querySelector('.sub');
+
+        var cardImg = document.getElementById('img');
+        var cardImg1 = document.getElementById('img1');
+        var cardImg2 = document.getElementById('img2');
+
+        var low =document.getElementById('lower');
+        var low2 =document.getElementById('lower2');
+        var low1 =document.getElementById('lower1');
+        var ADDClass = function(e,f){
+                e.classList.add('cardimgAct');
+                f.classList.remove('hide');
+        }
+        var removeClass = function(e,f){
+            e.classList.remove('cardimgAct');
+            f.classList.add('hide');
+        }
+        console.log(check);
+
+    check1.addEventListener('change',function(){
+        if(check1.checked){
+            console.log('checked');
+            console.log(cardImg)
+            ADDClass(cardImg1,low1);
+            document.getElementById('card-1').classList.add('boxactive');
+          
+           
+        }
+        else{
+            console.log('not')
+            removeClass(cardImg1,low1);
+            document.getElementById('card-1').classList.remove('boxactive');
+
+        }
+       
+    })
+    check2.addEventListener('change',function(){
+        if(check2.checked){
+            console.log('checked');
+            console.log(cardImg2)
+            ADDClass(cardImg2,low2);
+            document.getElementById('card-2').classList.add('boxactive');
+            
+           
+        }
+        else{
+            console.log('not')
+            removeClass(cardImg2,low2);
+            document.getElementById('card-2').classList.remove('boxactive');
+
+
+        }
+       
+    })
+    check.addEventListener('change',function(){
+        if(check.checked){
+            console.log('checked');
+            console.log(cardImg)
+            ADDClass(cardImg,low);
+            document.getElementById('card-3').classList.add('boxactive');
+
+            
+        }
+        else{
+            console.log('not')
+            removeClass(cardImg,low);
+            document.getElementById('card-3').classList.remove('boxactive');
+            
+        }
+       
+    })
+    document.addEventListener('change', ()=>{
+
+    
+    if (check.checked | check1.checked |check2.checked ) {
+        document.querySelector('.endt').innerHTML='Are you done? You can select multiple';
+        button.disabled=false;
+
+        if (check.checked & check1.checked & check2.checked ) {
+        document.querySelector('.endt').innerHTML='Way to go';
+        button.disabled=false;
+     }
+    }
+    
+
+    else {
+        document.querySelector('.endt').innerHTML='';
+        button.disabled=true;
+        
+    }
+       var url=window.location.href;
+       var urlArray = url.split("/");
+       var link = urlArray[urlArray.length - 1];
+       button.addEventListener('click',()=>{
+            link ="validate.html";
+            urlArray[urlArray.length-1]=link;
+            console.log(urlArray);
+            url=urlArray.join('/');
+            window.location.href=url;
+       });
+
+
+})
+
+
+    </script>
+</body>
+</html>

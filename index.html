@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="major">
+        <div class="grap"><p class="home">Dripplé</p></div>
+        <div class="space"></div>
+        <form action="/" class="signup" id="TheForm">
+             <p class="signin">Already a member? <a href="https://dribbble.com/session/new" target="_blank">Signin</a></p>
+             <h1>Sign up to Dripplé</h1>
+             <p class="warn"></p>
+             <p class="userError"></p>
+             <p class="emailError"></p>
+             <p class="checkError"></p>
+
+             <div class="namess">
+            <p class="fullname">Name <br><input type="text" class="size round" autocomplete="off" placeholder="name" onkeyup="checkForm()"  id="name" required></p>
+            <p class="user">Username <br><input type="text" class="size round" name="username" id="user" onkeyup="checkForm()"  placeholder=" username" ></p>
+             </div>
+            <p class="email1">Email<br><input type="email" name="Email" class="sizeE round" onkeyup="checkForm()"  id="email" placeholder=" email" required></p>
+            <p class="pass">Password<br><input type="password" onkeyup="checkForm()"  id="pass" class="size round" placeholder=" password" required></p>
+            <div class="terms">
+            <input type="checkbox" id="check" required><p class="termss"> agree with Dripplé's <a href="http://" target="_blank" rel="noopener noreferrer">Terms of Service</a>, <a href="">Privacy Policy</a>, and default, <a href="http://">Notification Settings.</a></p>
+           </div>
+            <input class="button" name="submit" value="Create Account" type="button" disabled="disabled">
+            <p class="banner">This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
+        </form>
+    </div>
+    <script>
+       var warn = document.querySelector('.warn');
+       var userError=document.querySelector('.userError');
+       var emailError = document.querySelector('.emailError');
+       var checkError = document.querySelector('.checkError');
+       var formElements = document.querySelector('.size');
+       var formEmail = document.querySelector('.sizeE');
+       var check = document.getElementById('check');
+       var button = document.querySelector('.button');
+       var url=window.location.href;
+       var urlArray = url.split("/");
+       var link = urlArray[urlArray.length - 1];
+       console.log(urlArray);
+       window.addEventListener('pageshow', function(event) {
+       if (event.persisted) {
+       window.location.reload();
+      }
+     });
+     document.addEventListener('change',
+      function checkForm(){
+       var form = document.getElementById('TheForm').elements;
+       var fieldIsFilled=true;
+      
+       for (let i = 0; i < form.length; i++) {
+        if(form[i].value.length === 0){
+           fieldIsFilled = false;
+           warn.innerHTML='please fill all the details';
+           
+        }
+        // add email validation
+        if (fieldIsFilled) {
+  check.addEventListener('change',function(){
+        if (check.checked) {
+          button.disabled =false;
+          warn.innerHTML='';
+          checkError.innerHTML='';
+          checkError.style.display='none';
+        }
+        else {
+            checkError.innerHTML='agree to terms to proceed';
+            checkError.style.display='block';
+            button.disabled=true;
+        }
+     })
+
+      document.addEventListener('change',()=>{
+         if(document.getElementById('name').value != document.getElementById('user').value){
+            userError.innerHTML='';
+            userError.style.display='none';
+           }
+           else{
+           
+            userError.innerHTML='username already taken';
+            userError.style.display='block';
+           }
+        })
+     
+           const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+         
+     document.getElementById('email').addEventListener('change',()=>{
+        if(regex.test(document.getElementById('email').value) | document.getElementById('email').value == "" ){
+            emailError.innerHTML='';
+            emailError.style.display='none'
+              return true;
+             
+        }
+        else{
+            emailError.innerHTML='provided email is invalid ';
+            emailError.style.display='block'
+            return false;
+            
+        }
+
+     }); 
+        if(emailError.innerHTML == ''& userError.innerHTML==''){
+            button.disabled=false;
+        }
+        else{
+            button.disabled=true;
+        }
+     
+        } else {
+            
+           button.disabled=true;
+        }
+      }
+    })
+
+    
+     button.addEventListener('click',()=>{
+            link ="welcome.html";
+            urlArray[urlArray.length-1]=link;
+            console.log(urlArray);
+            url=urlArray.join('/');
+            window.location.href=url;
+    });
+           
+       
+       
+    </script>
+</body>
+</html>
