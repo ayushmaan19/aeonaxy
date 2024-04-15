@@ -57,11 +57,10 @@ var avatars = ['images/pic1.jpg','images/pic2.jpg','images/pic3.jpg','images/pic
        console.log(urlArray);
      button.addEventListener('click',()=>{
         if(CurrImg.getAttribute('src') == 'images/images.png'){
-            alert('please add an image or choose from defaults');
-       
             if (document.querySelector('#loca').value == '') {
              alert('please add location');
         }
+               alert('please add an image or choose from defaults');
      }
  else {
     link ="purpose.html";
