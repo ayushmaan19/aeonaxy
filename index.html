@@ -60,11 +60,10 @@
            warn.innerHTML='please fill all the details';
            
         }
-        // add email validation
+        // added email validation
         if (fieldIsFilled) {
   check.addEventListener('change',function(){
         if (check.checked) {
-          button.disabled =false;
           warn.innerHTML='';
           checkError.innerHTML='';
           checkError.style.display='none';
@@ -72,7 +71,6 @@
         else {
             checkError.innerHTML='agree to terms to proceed';
             checkError.style.display='block';
-            button.disabled=true;
         }
      })
 
@@ -106,7 +104,7 @@
         }
 
      }); 
-        if(emailError.innerHTML == ''& userError.innerHTML==''){
+        if(warn.innerHTML=='' && emailError.innerHTML == ''&& userError.innerHTML=='' && checkError.innerHTML ==''){
             button.disabled=false;
         }
         else{
